@@ -1,0 +1,56 @@
+//////////////////////////////
+// Helper Classes
+//////////////////////////////
+
+.ir
+    background-color: transparent
+    border: 0
+    overflow: hidden
+    /* IE 6/7 fallback */
+    *text-indent: -9999px
+    &:before
+        content: ""
+        display: block
+        width: 0
+        height: 100%
+
+.hidden 
+    display: none !important
+    visibility: hidden
+
+.visuallyhidden
+    border: 0
+    clip: rect(0 0 0 0)
+    height: 1px
+    margin: -1px
+    overflow: hidden
+    padding: 0
+    position: absolute
+    width: 1px
+    &.focusable:active,
+    &.focusable:focus
+        clip: auto
+        height: auto
+        margin: 0
+        overflow: visible
+        position: static
+        width: auto
+
+.invisible
+    visibility: hidden
+
+.clearfix
+    zoom: 1
+    &:before, 
+    &:after
+        content: "\0020"
+        display: block
+        height: 0
+        overflow: hidden
+    &:after
+        clear: both
+
+
+
+
+    

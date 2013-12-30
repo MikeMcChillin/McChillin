@@ -1,0 +1,36 @@
+@import "compass/css3/animation"
+
+// Include this mixin on the element you wish to animate
+=animated($animation-duration, $animation-delay, $animation-timing)
+    +animation-fill-mode(both)
+    +animation-duration($animation-duration)
+    +animation-delay($animation-delay)
+    +animation-timing-function($animation-timing)
+    +backface-visibility(hidden)
+
++keyframes(navPeak1)
+    100%
+        +transform(translateY(-45px))
++keyframes(navPeak2)
+    100%
+        +transform(translateY(-66px))
+
++keyframes(fadeBounceDown)
+    0%
+        +scale(0.01)
+        +opacity(0)
+        +transform(translateY(30px))
+    100%
+        +scale(1)
+        +opacity(1)
+        +transform(translateY(0))
+
++keyframes(fadeBounceUp)
+    0%
+        +scale(0.01)
+        +opacity(0)
+        +transform(translateY(-30px))
+    100%
+        +scale(1)
+        +opacity(1)
+        +transform(translateY(0))

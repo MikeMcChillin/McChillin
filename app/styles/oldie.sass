@@ -1,0 +1,11 @@
+// This mixin is necessary to overwrite the mixin in style.sass
+// to get mediaquery styles to show up in IE8 and below.
+
+$phone: 480px
+$tablet-portrait: 767px
+$tablet-landscape: ($tablet-portrait + 1)
+$desktop: 1200px
+@mixin respond-to($media)
+    @content
+
+@import "global"
