@@ -202,6 +202,7 @@ module.exports = function (grunt) {
         },
         useminPrepare: {
             options: {
+                root: 'app',
                 dest: '<%= yeoman.dist %>'
             },
             html: '<%= yeoman.app %>/index.html'
@@ -292,6 +293,13 @@ module.exports = function (grunt) {
                 cwd: '<%= yeoman.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
+            },
+            scripts: {
+                expand: true,
+                dot: true,
+                cwd: '<%= yeoman.app %>/scripts',
+                dest: '.tmp/scripts/',
+                src: '{,*/}*.js'
             }
         },
         modernizr: {
@@ -363,7 +371,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         // 'jshint',
-        'test',
+        // 'test',
         'build'
     ]);
 };
