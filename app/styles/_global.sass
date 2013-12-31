@@ -23,7 +23,8 @@ $backgroundcolor: #181818
 $max: 10
 $speed: 3.0s
 
-$fadeInSpeed: 2.5s
+$fadeInDelay: 3s
+$fadeInSpeed: 0.6s
 
 
 //////////////////////////////
@@ -187,14 +188,23 @@ section
         position: relative
         +transition(color $speed linear)
 
+#logo,
+.social
+    +opacity(0)
+
+
+#logo,
+.social,
+#main-footer
+    +animation-delay($fadeInDelay)
+    +animation-duration($fadeInSpeed)
+    +animation-timing-function(cubic-bezier(0.19, 1, 0.22, 1))
+    +animation-fill-mode(both)
+    // +backface-visibility(hidden)
 
 #logo
     margin-bottom: 2.5em
-    +opacity(0)
     +animation-name(fadeBounceDown)
-    +animation-delay($fadeInSpeed)
-    +animation-timing-function(cubic-bezier(0.19, 1, 0.22, 1))
-    +animation-fill-mode(forwards)
     a
         font-weight: 300
         +inline-block
@@ -202,11 +212,7 @@ section
 
 .social
     margin-right: 1em
-    +opacity(0)
     +animation-name(fadeBounceUp)
-    +animation-delay($fadeInSpeed)
-    +animation-timing-function(cubic-bezier(0.19, 1, 0.22, 1))
-    +animation-fill-mode(forwards)
     li
         float: left
         margin-right: 1em
@@ -248,25 +254,18 @@ nav,
     +transition(background-color $speed linear)
     a
         display: block
-        // color: rgba($backgroundcolor, 0.8)
         color: rgba($backgroundcolor, 0.6)
         letter-spacing: -2px
         padding: 0.25em 0
         height: 100%
-        // +transition(background-color 0.3s ease)
-        // +transition(color 0.6s ease, background-color 0.6s ease)
         +transition(all 0.3s ease)
         &:hover
             color: rgba($backgroundcolor, 0.8)
-            // background-color: rgba($white, 0.3)
             background-color: rgba($backgroundcolor, 0.1)
 
 #main-footer
+    position: relative
     +animation-name(navPeak1)
     +transition-property(all)
-    +transition-duration(0.3s)
-    +animation-delay($fadeInSpeed)
-    +transition-timing-function(cubic-bezier(0.19, 1, 0.22, 1))
-    +animation-fill-mode(forwards)
     +respond-to(tablet)
         +animation-name(navPeak2)
