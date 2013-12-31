@@ -124,7 +124,7 @@ $colorCount: $max
         #work,
         .highlight
             background-color: $currentColor
-    $colorCount: $colorCount - 1
+    $colorCount: $colorCount - 1 !global
       
 
 //////////////////////////////
@@ -159,7 +159,7 @@ section
         color: transparent
         font-weight: 600
         min-height: 146px
-        letter-spacing: -1px
+        letter-spacing: -2px
         margin: 0 0 0.75em 0
         +transition(color $speed linear)
         .highlight
