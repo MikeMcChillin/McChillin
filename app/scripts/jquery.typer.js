@@ -1,257 +1,304 @@
 String.prototype.rightChars = function(n){
-  if (n <= 0) {
-    return "";
-  }
-  else if (n > this.length) {
-    return this;
-  }
-  else {
-    return this.substring(this.length, this.length - n);
-  }
+	if (n <= 0) {
+		return "";
+	}
+	else if (n > this.length) {
+		return this;
+	}
+	else {
+		return this.substring(this.length, this.length - n);
+	}
 };
 
 (function($) {
-  var
-    options = {
-      highlightSpeed    : 20,
-      typeSpeed         : 100,
-      clearDelay        : 500,
-      typeDelay         : 200,
-      clearOnHighlight  : true,
-      typerDataAttr     : 'data-typer-targets',
-      typerInterval     : 2000
-    },
-    highlight,
-    clearText,
-    backspace,
-    type,
-    spanWithColor,
-    clearDelay,
-    typeDelay,
-    clearData,
-    isNumber,
-    typeWithAttribute,
-    getHighlightInterval,
-    getTypeInterval,
-    typerInterval;
+	var
+		options = {
+			highlightSpeed    : 20,
+			typeSpeed         : 100,
+			clearDelay        : 500,
+			typeDelay         : 200,
+			clearOnHighlight  : true,
+			typerDataAttr     : 'data-typer-targets',
+			typerInterval     : 2000
+		},
+		highlight,
+		clearText,
+		backspace,
+		type,
+		spanWithColor,
+		clearDelay,
+		typeDelay,
+		clearData,
+		isNumber,
+		targets,
+		typeWithAttribute,
+		getHighlightInterval,
+		getTypeInterval,
+		typerInterval;
 
-  spanWithColor = function() {
-    // if (color === 'rgba(0, 0, 0, 0)') {
-    //   color = 'rgb(255, 255, 255)';
-    // }
+	spanWithColor = function() {
+		// if (color === 'rgba(0, 0, 0, 0)') {
+		//   color = 'rgb(255, 255, 255)';
+		// }
 
-    return $('<span class="highlight"></span>');
-      // .css('color', color);
-      // .css('background-color', backgroundColor);
-  };
+		return $('<span class="highlight"></span>');
+			// .css('color', color);
+			// .css('background-color', backgroundColor);
+	};
 
-  isNumber = function (n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-  };
+	isNumber = function (n) {
+		return !isNaN(parseFloat(n)) && isFinite(n);
+	};
 
-  clearData = function ($e) {
-    $e.removeData([
-      'typePosition',
-      'highlightPosition',
-      'leftStop',
-      'rightStop',
-      'primaryColor',
-      'backgroundColor',
-      'text',
-      'typing'
-    ]);
-  };
+	clearData = function ($e) {
+		$e.removeData([
+			'typePosition',
+			'highlightPosition',
+			'leftStop',
+			'rightStop',
+			'primaryColor',
+			'backgroundColor',
+			'text',
+			'typing'
+		]);
+	};
 
-  type = function ($e) {
-    var
-      // position = $e.data('typePosition'),
-      text = $e.data('text'),
-      oldLeft = $e.data('oldLeft'),
-      oldRight = $e.data('oldRight');
+	type = function ($e) {
+		var
+			// position = $e.data('typePosition'),
+			text = $e.data('text'),
+			oldLeft = $e.data('oldLeft'),
+			oldRight = $e.data('oldRight');
 
-    // if (!isNumber(position)) {
-      // position = $e.data('leftStop');
-    // }
+		// if (!isNumber(position)) {
+			// position = $e.data('leftStop');
+		// }
 
-    if (!text || text.length === 0) {
-      clearData($e);
-      return;
-    }
+		if (!text || text.length === 0) {
+			clearData($e);
+			return;
+		}
 
 
-    $e.text(
-      oldLeft +
-      text.charAt(0) +
-      oldRight
-    ).data({
-      oldLeft: oldLeft + text.charAt(0),
-      text: text.substring(1)
-    });
+		$e.text(
+			oldLeft +
+			text.charAt(0) +
+			oldRight
+		).data({
+			oldLeft: oldLeft + text.charAt(0),
+			text: text.substring(1)
+		});
 
-    // $e.text($e.text() + text.substring(position, position + 1));
+		// $e.text($e.text() + text.substring(position, position + 1));
 
-    // $e.data('typePosition', position + 1);
+		// $e.data('typePosition', position + 1);
 
-    setTimeout(function () {
-      type($e);
-    }, getTypeInterval());
-  };
+		setTimeout(function () {
+			type($e);
+		}, getTypeInterval());
+	};
 
-  clearText = function ($e) {
-    $e.find('span').remove();
+	clearText = function ($e) {
+		$e.find('span').remove();
 
-    setTimeout(function () {
-      type($e);
-    }, typeDelay());
-  };
+		setTimeout(function () {
+			type($e);
+		}, typeDelay());
+	};
 
-  highlight = function ($e) {
-    var
-      position = $e.data('highlightPosition'),
-      leftText,
-      highlightedText,
-      rightText;
+	highlight = function ($e) {
+		var
+			position = $e.data('highlightPosition'),
+			leftText,
+			highlightedText,
+			rightText;
 
-    if (!isNumber(position)) {
-      position = $e.data('rightStop') + 1;
-    }
+		if (!isNumber(position)) {
+			position = $e.data('rightStop') + 1;
+		}
 
-    if (position <= $e.data('leftStop')) {
-      setTimeout(function () {
-        clearText($e);
-      }, clearDelay());
-      return;
-    }
+		if (position <= $e.data('leftStop')) {
+			setTimeout(function () {
+				clearText($e);
+			}, clearDelay());
+			return;
+		}
 
-    leftText = $e.text().substring(0, position - 1);
-    highlightedText = $e.text().substring(position - 1, $e.data('rightStop') + 1);
-    rightText = $e.text().substring($e.data('rightStop') + 1);
+		leftText = $e.text().substring(0, position - 1);
+		highlightedText = $e.text().substring(position - 1, $e.data('rightStop') + 1);
+		rightText = $e.text().substring($e.data('rightStop') + 1);
 
-    $e.html(leftText)
-      .append(
-        spanWithColor().append(highlightedText)
-      )
-      .append(rightText);
+		$e.html(leftText)
+			.append(
+				spanWithColor().append(highlightedText)
+			)
+			.append(rightText);
 
-    $e.data('highlightPosition', position - 1);
+		$e.data('highlightPosition', position - 1);
 
-    setTimeout(function () {
-      return highlight($e);
-    }, getHighlightInterval());
-  };
+		setTimeout(function () {
+			return highlight($e);
+		}, getHighlightInterval());
+	};
 
-  typeWithAttribute = function ($e) {
-    var targets;
+	// Create an array
+	createArray = function($e) {
+		targets = $.map($e.attr($.typer.options.typerDataAttr).split(';'), function (e) {
+			return $.trim(e);
+		});
+		// console.log(targets);
+	}
 
-    if ($e.data('typing')) {
-      return;
-    }
+	// Shuffle array
+	shuffleArray = function shuffle(targets) {
+		var m = targets.length, t, i;
 
-    try {
-      targets = JSON.parse($e.attr($.typer.options.typerDataAttr)).targets;
-    } catch (e) {}
+		// While there remain elements to shuffle…
+		while (m) {
 
-    if (typeof targets === "undefined") {
-      targets = $.map($e.attr($.typer.options.typerDataAttr).split(','), function (e) {
-        return $.trim(e);
-      });
-    }
+			// Pick a remaining element…
+			i = Math.floor(Math.random() * m--);
 
-    $e.typeTo(targets[Math.floor(Math.random()*targets.length)]);
-  };
+			// And swap it with the current element.
+			t = targets[m];
+			targets[m] = targets[i];
+			targets[i] = t;
+		}
+		// console.log("Array: " + targets);
+		return targets;
+		
+	}
+	var arrayIterationCount = 0;
 
-  // Expose our options to the world.
-  $.typer = (function () {
-    return { options: options };
-  })();
 
-  $.extend($.typer, {
-    options: options
-  });
+	// typeWithAttribute = function ($e) {
+	// 	var targets;
 
-  //-- Methods to attach to jQuery sets
+	// 	if ($e.data('typing')) {
+	// 		return;
+	// 	}
 
-  $.fn.typer = function() {
-    var $elements = $(this);
+	// 	try {
+	// 		targets = JSON.parse($e.attr($.typer.options.typerDataAttr)).targets;
+	// 		console.log("Targets: " + targets);
+	// 	} catch (e) {}
 
-    return $elements.each(function () {
-      var $e = $(this);
+	// 	if (typeof targets === "undefined") {
+	// 		targets = $.map($e.attr($.typer.options.typerDataAttr).split(';'), function (e) {
+	// 			return $.trim(e);
+	// 		});
+	// 		console.log("Targets2: " + targets);
+	// 	}
 
-      if (typeof $e.attr($.typer.options.typerDataAttr) === "undefined") {
-        return;
-      }
+	// 	$e.typeTo(targets[Math.floor(Math.random()*targets.length)]);
+	// };
 
-      typeWithAttribute($e);
-      setInterval(function () {
-        typeWithAttribute($e);
-      }, typerInterval());
-    });
-  };
+	// Expose our options to the world.
+	$.typer = (function () {
+		return { options: options };
+	})();
 
-  $.fn.typeTo = function (newString) {
-    var
-      $e = $(this),
-      currentText = $e.text(),
-      i = 0,
-      j = 0;
-    // console.log("typeTo was run.");
+	$.extend($.typer, {
+		options: options
+	});
 
-    if (currentText === newString) {
-      // console.log("Our strings our equal, nothing to type");
-      return $e;
-    }
+	//-- Methods to attach to jQuery sets
 
-    if (currentText !== $e.html()) {
-      console.error("Typer does not work on elements with child elements.");
-      return $e;
-    }
+	$.fn.typer = function() {
+		var $elements = $(this);
 
-    $e.data('typing', true);
+		return $elements.each(function () {
+			var $e = $(this);
 
-    while (currentText.charAt(i) === newString.charAt(i)) {
-      i++;
-    }
+			if (typeof $e.attr($.typer.options.typerDataAttr) === "undefined") {
+				return;
+			}
 
-    while (currentText.rightChars(j) === newString.rightChars(j)) {
-      j++;
-    }
+			// Create the array from the data tag
+			createArray($e);
+			// Shuffle the array using Fisher-Yates algorithm
+			shuffleArray(targets);
+			
+			// Type first item in shuffled array
+			$e.typeTo(targets[arrayIterationCount]);
+			arrayIterationCount++;
 
-    newString = newString.substring(i, newString.length - j + 1);
+			// Loop through the array			
+			timer = setInterval(function(){
+				$e.typeTo(targets[arrayIterationCount]);
+				arrayIterationCount++;
+				// Once we're at the end of the array, just go back to the beginning.
+				if (arrayIterationCount === targets.length) {
+					arrayIterationCount = 0;
+				}
+			}, typerInterval());
 
-    $e.data({
-      oldLeft: currentText.substring(0, i),
-      oldRight: currentText.rightChars(j - 1),
-      leftStop: i,
-      rightStop: currentText.length - j,
-      primaryColor: $e.css('color'),
-      backgroundColor: $e.css('background-color'),
-      text: newString
-    });
+		});
+	};
 
-    highlight($e);
+	$.fn.typeTo = function (newString) {
+		var
+			$e = $(this),
+			currentText = $e.text(),
+			i = 0,
+			j = 0;
 
-    return $e;
-  };
+		// if (currentText === newString) {
+		// 	// console.log("Our strings our equal, nothing to type");
+		// 	return $e;
+		// }
 
-  //-- Helper methods. These can one day be customized further to include things like ranges of delays.
+		// if (currentText !== $e.html()) {
+		// 	console.error("Typer does not work on elements with child elements.");
+		// 	return $e;
+		// }
 
-  getHighlightInterval = function () {
-    return $.typer.options.highlightSpeed;
-  };
+		$e.data('typing', true);
 
-  getTypeInterval = function () {
-    return $.typer.options.typeSpeed;
-  },
+		while (currentText.charAt(i) === newString.charAt(i)) {
+			i++;
+		}
 
-  clearDelay = function () {
-    return $.typer.options.clearDelay;
-  },
+		while (currentText.rightChars(j) === newString.rightChars(j)) {
+			j++;
+		}
 
-  typeDelay = function () {
-    return $.typer.options.typeDelay;
-  };
+		newString = newString.substring(i, newString.length - j + 1);
 
-  typerInterval = function () {
-    return $.typer.options.typerInterval;
-  };
+		$e.data({
+			oldLeft: currentText.substring(0, i),
+			oldRight: currentText.rightChars(j - 1),
+			leftStop: i,
+			rightStop: currentText.length - j,
+			primaryColor: $e.css('color'),
+			backgroundColor: $e.css('background-color'),
+			text: newString
+		});
+
+		highlight($e);
+
+		return $e;
+	};
+
+	//-- Helper methods. These can one day be customized further to include things like ranges of delays.
+
+	getHighlightInterval = function () {
+		return $.typer.options.highlightSpeed;
+	};
+
+	getTypeInterval = function () {
+		return $.typer.options.typeSpeed;
+	},
+
+	clearDelay = function () {
+		return $.typer.options.clearDelay;
+	},
+
+	typeDelay = function () {
+		return $.typer.options.typeDelay;
+	};
+
+	typerInterval = function () {
+		return $.typer.options.typerInterval;
+	};
 })(jQuery);

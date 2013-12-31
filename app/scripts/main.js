@@ -18,6 +18,7 @@ $(document).ready(function() {
 	$.typer.options.highlightSpeed = 15;
 	$.typer.options.typeSpeed = 50;
 	$.typer.options.typerInterval = 6000;
+	// $.typer.options.typerInterval = 3000;
 	$.typer.options.typeDelay = 50;
 	$.typer.options.clearDelay = 1000;
 	$('[data-typer-targets]').typer();
