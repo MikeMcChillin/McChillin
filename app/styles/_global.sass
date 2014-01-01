@@ -126,6 +126,7 @@ $colorCount: $max
         .highlight
             background-color: $currentColor
     $colorCount: $colorCount - 1 !global
+    // $colorCount: $colorCount - 1
       
 
 //////////////////////////////
@@ -259,6 +260,7 @@ nav,
         padding: 0.25em 0
         height: 100%
         +transition(all 0.3s ease)
+        position: relative
         &:hover
             color: rgba($backgroundcolor, 0.8)
             background-color: rgba($backgroundcolor, 0.1)

@@ -1,35 +1,29 @@
-@import "compass/css3/animation"
+@import "animation"
 
 +keyframes(navPeak)
     0%
         top: 0
     100%
-        // +transform(translateY(0))
         top: -45px
 
 +keyframes(navPeak2)
     0%
         top: 0
     100%
-        // +transform(translateY(-66px))
         top: -66px
 
 +keyframes(fadeBounceDown)
     0%
-        +scale(0.01)
         +opacity(0)
         +transform(translateY(30px))
     100%
-        +scale(1)
         +opacity(1)
         +transform(translateY(0))
 
 +keyframes(fadeBounceUp)
     0%
-        +scale(0.01)
         +opacity(0)
         +transform(translateY(-30px))
     100%
-        +scale(1)
         +opacity(1)
         +transform(translateY(0))

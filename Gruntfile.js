@@ -145,7 +145,8 @@ module.exports = function (grunt) {
                 httpGeneratedImagesPath: '/images/generated',
                 httpFontsPath: '/styles/fonts',
                 relativeAssets: false,
-                assetCacheBuster: false
+                assetCacheBuster: false,
+                require: 'animation'
             },
             dist: {
                 options: {
@@ -340,6 +341,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'compass',
             'concurrent:server',
             'autoprefixer',
             'connect:livereload',
