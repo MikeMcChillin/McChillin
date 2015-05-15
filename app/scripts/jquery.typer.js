@@ -1,6 +1,8 @@
+'use strict';
+
 String.prototype.rightChars = function(n){
 	if (n <= 0) {
-		return "";
+		return '';
 	}
 	else if (n > this.length) {
 		return this;
@@ -23,7 +25,6 @@ String.prototype.rightChars = function(n){
 		},
 		highlight,
 		clearText,
-		backspace,
 		type,
 		spanWithColor,
 		clearDelay,
@@ -31,7 +32,6 @@ String.prototype.rightChars = function(n){
 		clearData,
 		isNumber,
 		targets,
-		typeWithAttribute,
 		getHighlightInterval,
 		getTypeInterval,
 		typerInterval;
@@ -142,15 +142,15 @@ String.prototype.rightChars = function(n){
 	};
 
 	// Create an array
-	createArray = function($e) {
+	var createArray = function($e) {
 		targets = $.map($e.attr($.typer.options.typerDataAttr).split(';'), function (e) {
 			return $.trim(e);
 		});
 		// console.log(targets);
-	}
+	};
 
 	// Shuffle array
-	shuffleArray = function shuffle(targets) {
+	var shuffleArray = function shuffle(targets) {
 		var m = targets.length, t, i;
 
 		// While there remain elements to shuffle…
@@ -166,8 +166,8 @@ String.prototype.rightChars = function(n){
 		}
 		// console.log("Array: " + targets);
 		return targets;
-		
-	}
+
+	};
 	var arrayIterationCount = 0;
 
 
@@ -210,7 +210,7 @@ String.prototype.rightChars = function(n){
 		return $elements.each(function () {
 			var $e = $(this);
 
-			if (typeof $e.attr($.typer.options.typerDataAttr) === "undefined") {
+			if (typeof $e.attr($.typer.options.typerDataAttr) === 'undefined') {
 				return;
 			}
 
@@ -218,13 +218,13 @@ String.prototype.rightChars = function(n){
 			createArray($e);
 			// Shuffle the array using Fisher-Yates algorithm
 			shuffleArray(targets);
-			
+
 			// Type first item in shuffled array
 			$e.typeTo(targets[arrayIterationCount]);
 			arrayIterationCount++;
 
-			// Loop through the array			
-			timer = setInterval(function(){
+			// Loop through the array
+			var timer = setInterval(function(){
 				$e.typeTo(targets[arrayIterationCount]);
 				arrayIterationCount++;
 				// Once we're at the end of the array, just go back to the beginning.
@@ -288,11 +288,11 @@ String.prototype.rightChars = function(n){
 
 	getTypeInterval = function () {
 		return $.typer.options.typeSpeed;
-	},
+	};
 
 	clearDelay = function () {
 		return $.typer.options.clearDelay;
-	},
+	};
 
 	typeDelay = function () {
 		return $.typer.options.typeDelay;
