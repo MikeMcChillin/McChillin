@@ -83,6 +83,8 @@ ul
 
 a
   text-decoration: none
+  &:focus
+    outline: 0
 
 p
   color: $white
@@ -123,7 +125,8 @@ $colorCount: $max
     .profile h2
       color: $currentColor
     #work,
-    .highlight
+    .highlight,
+    .workheader
       background-color: $currentColor
   // $colorCount: $colorCount - 1 !global
   $colorCount: $colorCount - 1
@@ -222,9 +225,9 @@ section
   a
     +inline-block
     color: rgba($white, 0.4)
-    font-size: 0.75em
-    letter-spacing: 2px
-    text-transform: uppercase
+    // font-size: 0.75em
+    // letter-spacing: 2px
+    // text-transform: uppercase
     position: relative
     +transition(color 0.3s linear)
 
@@ -236,22 +239,24 @@ nav,
     color: $white
 
 .workheader
-  padding: 1em 0
-  color: $white
-  background-color: #1e1e1e
+  // padding: 1em 0
+  // color: $white
+  color: transparent
+  // background-color: #1e1e1e
   display: block
   position: relative
   z-index: 2
-  height: 45px
-  +transition(0.3s ease background-color)
-  &:hover
-    background-color: lighten(#1e1e1e, 5%)
+  // height: 45px
+  +transition(background-color 3s linear)
+  // &:hover
+  //   background-color: lighten(#1e1e1e, 5%)
   +respond-to(tablet)
-    height: 66px
+    // height: 66px
+    height: 3em
 
 #work
   position: relative
-  background-color: #1e1e1e
+  // background-color: #1e1e1e
   padding-bottom: 3em
   +transition(background-color $speed linear)
   a
@@ -260,14 +265,16 @@ nav,
     letter-spacing: -2px
     padding: 0.25em 0
     height: 100%
-    +transition(all 0.3s ease)
     position: relative
+    border: 0
+    +transition(all 0.3s ease)
     &:hover
       color: rgba($backgroundcolor, 0.8)
       background-color: rgba($backgroundcolor, 0.1)
 
 #main-footer
   position: relative
+  background-color: #1e1e1e
   +animation-name(navPeak1)
   +transition-property(all)
   +respond-to(tablet)
