@@ -165,21 +165,24 @@ $colorCount: $max;
   transition: color 0.3s linear;
 }
 
-.logo {
-  animation-name: fadeBounceDown;
-  color: $white;
-}
-.social {
-  animation-name: fadeBounceUp;
-}
 .social-link {
   color: rgba($white, 0.4);
 }
+
 .logo,
 .social {
   animation-duration: $fadeInSpeed;
   animation-delay: $fadeInDelay;
   animation-fill-mode: both;
+}
+
+.logo {
+  display: inline-block; // Needs this for intro animation to work
+  animation-name: fadeBounceDown;
+  color: $white;
+}
+.social {
+  animation-name: fadeBounceUp;
 }
 
 .about {
