@@ -9,8 +9,10 @@
 
 $backgroundColor: #181818;
 $white: #f1f1f1;
-$tablet: 500px;
-$desktop: 650px;
+$tablet: 550px;
+$desktop: 750px;
+$fadeInDelay: 3s;
+$fadeInSpeed: 0.3s;
 
 html,
 body {
@@ -164,10 +166,20 @@ $colorCount: $max;
 }
 
 .logo {
+  animation-name: fadeBounceDown;
   color: $white;
+}
+.social {
+  animation-name: fadeBounceUp;
 }
 .social-link {
   color: rgba($white, 0.4);
+}
+.logo,
+.social {
+  animation-duration: $fadeInSpeed;
+  animation-delay: $fadeInDelay;
+  animation-fill-mode: both;
 }
 
 .about {
@@ -193,7 +205,7 @@ $colorCount: $max;
   font-size: 2em;
   font-weight: 600;
   line-height: 1.35;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.035em;
   @media (min-width: $desktop) {
     font-size: 2.842em;
   }
@@ -204,8 +216,8 @@ $colorCount: $max;
   position: relative;
   z-index: 1;
   animation-name: navPeak;
-  animation-duration: 0.3s;
-  animation-delay: 1s;
+  animation-duration: $fadeInSpeed;
+  animation-delay: $fadeInDelay;
   animation-fill-mode: both;
 }
 
@@ -215,7 +227,6 @@ $colorCount: $max;
 
 .project-link {
   display: block;
-  position: relative;
   padding: 0.25em 0;
   color: rgba($backgroundColor, 0.6);
   &:hover {
@@ -224,27 +235,10 @@ $colorCount: $max;
       background-color: rgba($backgroundColor, 0.6);
     }
   }
-  .inner {
-    position: relative;
-    height: 1.25em;
-  }
 }
 
 .project-highlight {
-  position: absolute;
   pointer-events: none;
-  overflow: hidden;
   border-radius: 1px;
-  // &:after {
-  //   content: '';
-  //   display: block;
-  //   pointer-events: none;
-  //   position: absolute;
-  //   left: 0;
-  //   top: 0;
-  //   height: 100%;
-  //   width: 100%;
-  //   transition: transform 0.1s linear;
-  // }
 }
 
