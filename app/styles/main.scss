@@ -1,0 +1,250 @@
+@import "fonts";
+@import "animations";
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+$backgroundColor: #181818;
+$white: #f1f1f1;
+$tablet: 500px;
+$desktop: 650px;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-size: 13px;
+  font-style: normal;
+  line-height: 1.5;
+  background-color: $backgroundColor;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'apercu_proregular';
+  @media (min-width: $tablet) {
+    font-size: 17px;
+  }
+  @media (min-width: $desktop) {
+    font-size: 19px;
+  }
+}
+
+::-moz-selection {
+  background: transparent;
+  text-shadow: none;
+}
+
+::selection {
+  background: transparent;
+  text-shadow: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  &.inline {
+    li {
+      display: inline-block;
+      margin-right: 0.5em;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  &:focus {
+    outline: 0;
+  }
+}
+
+h1,
+h2 {
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.inner {
+  margin: 0 auto;
+  width: 80%;
+  @media (min-width: $tablet) {
+    max-width: 600px;
+  }
+}
+
+.table {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.table-cell {
+  width: 100%;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+$max: 10;
+$speed: 3.0s;
+
+$colorCount: $max;
+
+@while $colorCount >= 0 {
+  $currentColor: hsl( ($colorCount * (350 / $max)), 60%, 75%);
+  .color#{$colorCount} {
+    .logo:hover,
+    .social-link:hover,
+    .typer {
+      color: $currentColor;
+    }
+    
+    .highlight,
+    .footer {
+      background-color: $currentColor;
+    }
+  }
+  $colorCount: $colorCount - 1;
+}
+
+.typer {
+  margin: 1em auto;
+  position: relative;
+  color: transparent;
+  transition: color $speed linear;
+  min-height: 70px;
+  @media (min-width: $tablet) {
+    min-height: 90px;
+  }
+  @media (min-width: $desktop) {
+    min-height: 146px;
+  }
+  &:after {
+    content: '✌';
+    display: none;
+    position: absolute;
+    top: 0;
+    left: -1em;
+  }
+  &:hover {
+    &:after {
+      display: block;
+    }
+  }
+}
+
+.highlight,
+.footer {
+  transition: background-color $speed linear;
+}
+
+.highlight {
+  color: transparent;
+  border-radius: 1px;
+}
+
+.hidden {
+  display: none;
+}
+
+.logo,
+.social-link {
+  transition: color 0.3s linear;
+}
+
+.logo {
+  color: $white;
+}
+.social-link {
+  color: rgba($white, 0.4);
+}
+
+.about {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: background-color $speed linear
+}
+
+.browser-height {
+  height: 100%;
+  pointer-events: none;
+}
+
+.typer,
+.project-link {
+  font-family: 'circular_stdregular';
+  font-size: 2em;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  @media (min-width: $desktop) {
+    font-size: 2.842em;
+  }
+}
+
+.footer {
+  background-color: #1e1e1e;
+  position: relative;
+  z-index: 1;
+  animation-name: navPeak;
+  animation-duration: 0.3s;
+  animation-delay: 1s;
+  animation-fill-mode: both;
+}
+
+.projects {
+  padding: 3em 0;
+}
+
+.project-link {
+  display: block;
+  position: relative;
+  padding: 0.25em 0;
+  color: rgba($backgroundColor, 0.6);
+  &:hover {
+    color: transparent;
+    .project-highlight {
+      background-color: rgba($backgroundColor, 0.6);
+    }
+  }
+  .inner {
+    position: relative;
+    height: 1.25em;
+  }
+}
+
+.project-highlight {
+  position: absolute;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 1px;
+  // &:after {
+  //   content: '';
+  //   display: block;
+  //   pointer-events: none;
+  //   position: absolute;
+  //   left: 0;
+  //   top: 0;
+  //   height: 100%;
+  //   width: 100%;
+  //   transition: transform 0.1s linear;
+  // }
+}
+
