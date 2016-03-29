@@ -29,6 +29,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'apercu_proregular';
+  cursor: default;
   @media (min-width: $tablet) {
     font-size: 17px;
   }
@@ -64,6 +65,7 @@ ul {
 
 a {
   text-decoration: none;
+  cursor: pointer;
   &:focus {
     outline: 0;
   }
@@ -167,6 +169,11 @@ $colorCount: $max;
 
 .social-link {
   color: rgba($white, 0.4);
+  &:link,
+  &:active,
+  &:visited {
+    color: rgba($white, 0.4);
+  }
 }
 
 .logo,
@@ -245,3 +252,16 @@ $colorCount: $max;
   border-radius: 1px;
 }
 
+.worked-with {
+  font-family: 'circular_stdregular';
+  color: rgba($backgroundColor, 0.6);
+  padding-bottom: 3em;
+}
+.worked-with--label {
+  font-family: 'apercu_proregular';
+  text-transform: uppercase;
+  font-size: 0.5em;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  padding-bottom: 0.5em;
+}
