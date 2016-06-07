@@ -256,6 +256,13 @@ $colorCount: $max;
   font-family: 'circular_stdregular';
   color: rgba($backgroundColor, 0.6);
   padding-bottom: 3em;
+  a {
+    color: rgba($backgroundColor, 0.6);
+    border-bottom: 1px solid transparent;
+    &:hover {
+      border-bottom: 1px solid;
+    }
+  }
 }
 .worked-with--label {
   font-family: 'apercu_proregular';

@@ -4,6 +4,9 @@
 Source code for my personal site: http://mcchill.in
 
 
+# Requirements
+Node `v4.0.0`
+
 # Setup
 
 ```
