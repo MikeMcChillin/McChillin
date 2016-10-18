@@ -97,7 +97,12 @@ gulp.task('html', function () {
   return gulp.src('app/**/*.html')
     .pipe(assets)
     // Concatenate and minify JavaScript
-    .pipe($.if('*.js', $.uglify({preserveComments: 'some'}).on('error', function(e) { console.log('\x07',e.message); return this.end();})  ))
+    .pipe($.if('*.js', 
+      $.uglify({preserveComments: 'some'}).on('error', function(e) { 
+        console.log('\x07',e.message); 
+        return this.end();
+      })
+    ))
     // Concatenate and minify styles
     // In case you are still using useref build blocks
     .pipe($.if('*.css', $.csso()))
@@ -146,7 +151,7 @@ gulp.task('serve:dist', ['default'], function () {
 
 // Build production files, the default task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('styles', ['jshint', 'html', 'fonts', 'copy'], cb);
+  runSequence('styles', ['html', 'fonts', 'copy'], cb);
   // runSequence('styles', ['html', 'fonts', 'copy'], cb);
 });
 
