@@ -38,6 +38,23 @@ $(document).ready(function() {
     scrollio(target, 800);
   });
 
+  $('[data-gtm-category]').on('click', function() {
+    var category = $(this).data('gtm-category');
+    var action = $(this).data('gtm-action');
+    var label = $(this).data('gtm-label');
+    gtmClickTrack(category, action, label);
+  });
+
+  // Send the info to Google Analytics
+  var gtmClickTrack = function(category, action, label) {
+    ga('send', {
+      hitType: 'event',
+      eventCategory: category,
+      eventAction: action,
+      eventLabel: label
+    });
+  };
+
   console.log('%c ✌', 'font-size:10em;');
 
 });
