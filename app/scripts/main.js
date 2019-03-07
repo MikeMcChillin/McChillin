@@ -23,6 +23,7 @@ $(document).ready(function() {
   // $.typer.options.typerInterval = 3000;
   $.typer.options.typeDelay = 50;
   $.typer.options.clearDelay = 1000;
+  $.typer.options.clearOnHighlight = false;
   $('[data-typer-targets]').typer();
 
   scrollio = function(target, speed) {

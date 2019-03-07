@@ -99,7 +99,8 @@ String.prototype.rightChars = function(n){
   };
 
   clearText = function ($e) {
-    $e.find('span').remove();
+    
+    // $e.find('span').remove();
 
     setTimeout(function () {
       type($e);
@@ -107,6 +108,7 @@ String.prototype.rightChars = function(n){
   };
 
   highlight = function ($e) {
+
     var
       position = $e.data('highlightPosition'),
       leftText,
@@ -255,13 +257,13 @@ String.prototype.rightChars = function(n){
 
     $e.data('typing', true);
 
-    while (currentText.charAt(i) === newString.charAt(i)) {
-      i++;
-    }
+    // while (currentText.charAt(i) === newString.charAt(i)) {
+    //   i++;
+    // }
 
-    while (currentText.rightChars(j) === newString.rightChars(j)) {
-      j++;
-    }
+    // while (currentText.rightChars(j) === newString.rightChars(j)) {
+    //   j++;
+    // }
 
     newString = newString.substring(i, newString.length - j + 1);
 
