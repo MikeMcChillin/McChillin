@@ -13,6 +13,7 @@ $tablet: 550px;
 $desktop: 750px;
 $fadeInDelay: 3s;
 $fadeInSpeed: 0.3s;
+$startingColor: hsl(35, 61%, 75%);
 
 html,
 body {
@@ -21,7 +22,7 @@ body {
 }
 
 body {
-  font-size: 11px;
+  font-size: 14px;
   font-style: normal;
   line-height: 1.5;
   background-color: $backgroundColor;
@@ -30,6 +31,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'apercu_proregular';
   cursor: default;
+
   @media (min-width: $tablet) {
     font-size: 17px;
   }
@@ -82,9 +84,10 @@ h2 {
 .inner {
   margin: 0 auto;
   width: 80%;
-  // @media (min-width: $tablet) {
-  //   // max-width: 600px;
-  // }
+
+  @media (min-width: $desktop) {
+    width: 75%;
+  }
 }
 
 .inner--link {
@@ -112,6 +115,7 @@ $colorCount: $max;
 
 @while $colorCount >= 0 {
   $currentColor: hsl( ($colorCount * (350 / $max)), 60%, 75%);
+
   .color#{$colorCount} {
     .logo:hover,
     .social-link:hover,
@@ -133,15 +137,9 @@ $colorCount: $max;
 .typer {
   margin: 1em auto;
   position: relative;
-  color: transparent;
-  // min-height: 70px;
+  color: $startingColor;
   min-height: 20vw;
-  // @media (min-width: $tablet) {
-  //   min-height: 90px;
-  // }
-  // @media (min-width: $desktop) {
-  //   min-height: 146px;
-  // }
+
   &:after {
     content: '✌';
     display: block;
@@ -221,19 +219,14 @@ $colorCount: $max;
 .typer,
 .project-highlight {
   font-family: 'circular_stdregular';
-  // font-size: 2em;
-  font-size: 4vw;
+  font-size: 7vw;
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.035em;
-  @media (min-width: $desktop) {
-    // font-size: 2.842em;
-    font-size: 7vw;
-  }
 }
 
 .footer {
-  background-color: #1e1e1e;
+  background-color: $startingColor;
   position: relative;
   z-index: 1;
   animation-name: navPeak;
@@ -258,13 +251,6 @@ $colorCount: $max;
       opacity: 1;
       transform: translateY(0);
     }
-    .line {
-      // transform: scaleX(1);
-    }
-    // .project-highlight {
-    //   color: transparent;
-    //   background-color: rgba($backgroundColor, 0.6);
-    // }
   }
 }
 
@@ -275,6 +261,7 @@ $colorCount: $max;
 
 .project-role {
   opacity: 0;
+  white-space: nowrap;
   margin-left: 30px;
   width: 20%;
   font-family: 'apercu_proregular';
